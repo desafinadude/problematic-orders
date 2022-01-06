@@ -1,0 +1,81 @@
+body {
+    font-size: 12px;
+}
+
+.domain {
+    display: none;
+}
+
+.tick line {
+    display: none;
+}
+.tick text {
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.tooltip {
+    font-family: sans-serif;
+    background: rgba(255,255,255,1);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    color: #333;
+    display: block;
+    max-width: 320px;
+    padding: 1em;
+    position: absolute;
+    z-index: 300;
+    visibility: hidden;
+    text-align: center;
+}
+
+.tooltip .field {
+    color: #999;
+    font-size: 1em;
+    line-height: 2em;
+    width: 100% !important;
+}
+
+.tooltip .field_value {
+    color: #333;
+    font-size: 1.1em;
+    font-weight: bold;
+    word-wrap: unset;
+    width: 100% !important;
+}
+
+.tooltip hr {
+    margin: 0.5em 0;
+    padding: 0;
+    border: none;
+    border-top: 1px solid #eee;
+}
+
+.tooltip img {
+    width: 100%;
+    min-width: 200px;
+    display:block;
+}
+
+.tooltip[pos="bottom"] {
+    transform: translateY(-110%);
+}
+
+.tooltip .article {
+    position: relative;
+    margin-top: 1em;
+}
+
+.tooltip .article a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.tooltip .article h4 {
+    font-size: 1em;
+    position: absolute;
+    transform: translateY(-50%);
+    bottom: 0;
+    text-align: center;
+    padding: 1em;
+}
