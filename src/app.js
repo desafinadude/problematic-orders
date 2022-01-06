@@ -10,7 +10,7 @@ const settings = {
     bandwidth: 100
 }
 
-d3.csv('bar_data_v2.csv').then((data) => {
+d3.csv('data.csv').then((data) => {
 
     const svg = d3.select('svg')
         .attr('width', settings.width)
