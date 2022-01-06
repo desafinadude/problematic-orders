@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "parcel src/index.html",
-    "build": "copyfiles --flat ./src/data.csv ./dist parcel build ./src/index.html"
+    "build": "copyfiles --flat ./src/data.csv ./dist && parcel build ./src/index.html"
   },
   "dependencies": {
     "copyfiles": "^2.4.1",
