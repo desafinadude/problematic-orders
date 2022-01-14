@@ -142,19 +142,13 @@ body {
     width: 15px;
 }
 
+.tooltip table th, .tooltip table td {
+    padding: 0.1em 0.2em;
+}
+
 .tooltip table th div{
     width: 15px;
     height: 15px;
-}
-
-.chart_legend {
-    margin-top: 2em;
-    width: 720px;
-}
-
-.chart_legend div {
-    padding: 0.2em;
-    color: #333;
 }
 
 // CONTROLS

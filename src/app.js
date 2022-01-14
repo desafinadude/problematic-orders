@@ -386,7 +386,7 @@ let toggleLegend = () => {
             .style('top','unset').style('bottom','unset')
             .style("top", "10px")
             .style("left","10px")
-            .style("width","400px")
+            .style("width","450px")
             .attr("pos","top");
     } else {
         tooltip.style("visibility", "hidden");
