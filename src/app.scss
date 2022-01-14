@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Sriracha&family=Work+Sans:ital,wght@0,400;0,600;1,300&display=swap');
+
 body {
+    font-family: 'Roboto', sans-serif;
     font-size: 12px;
 }
 
@@ -6,17 +9,15 @@ body {
     display: none;
 }
 
-.tick line {
-    display: none;
-}
 .tick text {
     font-size: 10px;
     text-transform: uppercase;
 }
 
+// TOOLTIP
+
 .tooltip {
-    font-family: sans-serif;
-    background: rgba(255,255,255,1);
+    background: rgba(255,255,255,0.9);
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
     color: #333;
@@ -29,26 +30,19 @@ body {
     text-align: center;
 }
 
-.tooltip .field {
-    color: #999;
-    font-size: 1em;
-    line-height: 2em;
-    width: 100% !important;
+.tooltip table {
+    text-align: left;
 }
 
-.tooltip .field_value {
+.tooltip th {
+    width: 100px;
     color: #333;
-    font-size: 1.1em;
-    font-weight: bold;
-    word-wrap: unset;
-    width: 100% !important;
 }
 
-.tooltip hr {
-    margin: 0.5em 0;
-    padding: 0;
-    border: none;
-    border-top: 1px solid #eee;
+.tooltip th, td {
+    padding: 0.5em;
+    color: #666;
+    vertical-align: top;
 }
 
 .tooltip img {
@@ -78,4 +72,77 @@ body {
     bottom: 0;
     text-align: center;
     padding: 1em;
+}
+
+.tooltip .close_popup {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    cursor: pointer;
+}
+
+.tooltip .close_popup svg {
+    width: 15px;
+}
+
+.tooltip .carousel_container {
+    position: relative;
+    height: 150px;
+}
+
+.tooltip .item_articles {
+    height: 150px;
+    width: 300px;
+}
+
+.tooltip .item_articles .slide {
+    background-position: center center;
+    background-size: cover;
+    width: 300px;
+    height: 150px;
+    position: relative;
+}
+
+.tooltip .article_details {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0.5em 0;
+    line-height: 1.2em;
+    background: rgba(0,0,0,0.5);
+}
+
+.tooltip .item_articles .article_details a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.4em;
+}
+
+.tooltip .item_articles .article_details span {
+    color: #fff;
+}
+
+.tooltip .carousel_container .carousel_navs {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.tooltip .carousel_container .carousel_navs.next {
+    right: 0;
+    left: unset;
+}
+
+// CONTROLS
+
+.chart_controls {
+    margin-top: 1em;
+}
+
+.chart_controls input {
+    position: relative;
+    top: 2px;
 }
