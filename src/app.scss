@@ -5,6 +5,10 @@ body {
     font-size: 12px;
 }
 
+#chart {
+    position: relative;
+}
+
 .domain {
     display: none;
 }
@@ -22,12 +26,11 @@ body {
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
     color: #333;
     display: block;
-    max-width: 320px;
+    width: 300px;
     padding: 1em;
     position: absolute;
     z-index: 300;
     visibility: hidden;
-    text-align: center;
 }
 
 .tooltip table {
@@ -134,6 +137,24 @@ body {
 .tooltip .carousel_container .carousel_navs.next {
     right: 0;
     left: unset;
+}
+.tooltip table th {
+    width: 15px;
+}
+
+.tooltip table th div{
+    width: 15px;
+    height: 15px;
+}
+
+.chart_legend {
+    margin-top: 2em;
+    width: 720px;
+}
+
+.chart_legend div {
+    padding: 0.2em;
+    color: #333;
 }
 
 // CONTROLS

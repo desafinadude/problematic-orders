@@ -19,9 +19,11 @@ let svg;
 let xScale, xAxis, tooltip;
 let showArticles = false;
 let showValues = false;
+let showLegend = false;
 let ordersMinMax = [0,100];
 let showingArticles = false;
 let carousel;
+
 
 d3.csv('orders.csv').then((incoming_orders) => {
 
@@ -30,13 +32,11 @@ d3.csv('orders.csv').then((incoming_orders) => {
     ordersMinMax[0] = 0;
     ordersMinMax[1] = Math.max.apply(Math, orders.map(function(o) { return o.order_num; }));
 
-
-
     d3.csv('articles.csv').then((incoming_articles) => {
 
         articles = incoming_articles;
 
-        // COLORS
+        // COLORS & CATEGORIES
 
         let groups = orders.map( d => d.group )
         groups = [...new Set(groups)]
@@ -47,6 +47,15 @@ d3.csv('orders.csv').then((incoming_orders) => {
                 color: d3.interpolateRainbow(index * (1/groups.length))
             })
         }
+
+        // LEGEND
+
+        d3.select('.chart_legend')
+            .selectAll('div')
+            .data(pallete)
+            .enter()
+            .append('div')
+            .html(d => d.group);
 
         // SVG
 
@@ -87,7 +96,7 @@ d3.csv('orders.csv').then((incoming_orders) => {
 
         // TOOLTIP
 
-        tooltip = d3.select('body').append("div")
+        tooltip = d3.select('#chart').append("div")
             .attr("class", "tooltip")
             .style("position", "absolute")
             .style("visibility", "hidden");
@@ -107,15 +116,18 @@ d3.csv('orders.csv').then((incoming_orders) => {
                 drawChart();
             })
 
-        
-
+        d3.select('#toggle_legend')
+            .on('change', () => {
+                showLegend = !showLegend;
+                toggleLegend();
+            })
     })
-
 })
 
 let drawChart = (run) => {
     
     // CATEGORIES    
+
     if(run == 'first_run') {
 
         cats = d3.group(orders, d => d.problem);
@@ -162,12 +174,11 @@ let drawChart = (run) => {
                 return pallete.find(obj => { return obj.group === d.group }).color;
             }
         })
-        
 
         // INTERACTION
 
         .on("mouseover", (d) => {
-            if(showingArticles == false) {
+            if(showingArticles == false && showLegend == false) {
                 d3.select(d.target)
                     .attr('cursor','pointer')
                     .transition().duration(100)
@@ -180,7 +191,7 @@ let drawChart = (run) => {
         })
 
         .on("mousemove", (d) => {
-            if(showingArticles == false) {
+            if(showingArticles == false && showLegend == false) {
                 var coords = d3.pointer( d );
                 tooltip.style('top','unset').style('bottom','unset');
                 tooltip.style("top", (coords[1]-20)+"px").style("left",(coords[0]+10)+"px");
@@ -190,7 +201,7 @@ let drawChart = (run) => {
         })
 
         .on("mouseout", (d) => {
-            if(showingArticles == false) {
+            if(showingArticles == false && showLegend == false) {
                 d3.select(d.target)
                     .attr('cursor','pointer')
                     .transition().duration(100)
@@ -239,7 +250,6 @@ let drawChart = (run) => {
                     document.querySelector('.next').addEventListener('click', () => carousel.next());
                 }
 
-
                 d3.select('.close_popup')
                     .on('click', () => {
                         showingArticles = false;
@@ -249,7 +259,6 @@ let drawChart = (run) => {
                             .attr('opacity',0.5)
                             .attr('r', settings.circle_radius[0])
                     })
-
             }
         })
 
@@ -358,6 +367,30 @@ let getTooltipContent = (d,type) => {
     return tooltip_content;
 }
 
+let toggleLegend = () => {
+
+    let chart_legend = '<table>';
+
+    for (let index = 0; index < pallete.length; ++index) {
+        chart_legend += '<tr>\
+            <th><div style="background: ' + pallete[index].color + '"></div></th>\
+            <td class="legend_name">' + pallete[index].group + '</td>\
+        </tr>';
+    }
+
+    chart_legend += '</table>';
+
+    if(showLegend == true) {
+        tooltip.html(chart_legend)
+            .style("visibility", "visible")
+            .style('top','unset').style('bottom','unset')
+            .style("bottom", "100px")
+            .style("left","0px")
+            tooltip.attr("pos","top");
+    } else {
+        tooltip.style("visibility", "hidden");
+    }
+}
 
 let getArticle = (attr, d) => {
     if(attr == 'stroke') {
@@ -392,6 +425,3 @@ let wrap = (text, width) => {
         }
     })
 }
-
-
-
