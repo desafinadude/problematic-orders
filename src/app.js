@@ -384,9 +384,10 @@ let toggleLegend = () => {
         tooltip.html(chart_legend)
             .style("visibility", "visible")
             .style('top','unset').style('bottom','unset')
-            .style("bottom", "100px")
-            .style("left","0px")
-            tooltip.attr("pos","top");
+            .style("top", "10px")
+            .style("left","10px")
+            .style("width","400px")
+            .attr("pos","top");
     } else {
         tooltip.style("visibility", "hidden");
     }
