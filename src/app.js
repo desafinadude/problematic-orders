@@ -186,6 +186,7 @@ let drawChart = (run) => {
                     .attr('r', settings.circle_radius[1])
 
                 tooltip.html(getTooltipContent(d))
+                    .style("width","300px")
                     .style("visibility", "visible");
             }
         })
