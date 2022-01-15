@@ -41,10 +41,12 @@ d3.csv('orders.csv').then((incoming_orders) => {
         let groups = orders.map( d => d.group )
         groups = [...new Set(groups)]
 
+        let color_pallete=["#C05194","#835AF1", "#7C4BA5", "#3A0751", "#50A9FF", "#2E67AB", "#28BF64", "#017E72","#00AEAD", "#95B587", "#B2A55F", "#D19258", "#A16969", "#828282", "#EFB821",  "#FF7629", "#DA4343"]
         for (let index = 0; index < groups.length; index++) {
             pallete.push({
                 group: groups[index],
-                color: d3.interpolateRainbow(index * (1/groups.length))
+                // color: d3.interpolateRainbow(index * (1/groups.length))
+                color: color_pallete[index]
             })
         }
 
