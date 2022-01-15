@@ -325,11 +325,11 @@ let getTooltipContent = (d,type) => {
         </tr>\
         <tr>\
             <th>Order Value</th>\
-            <td>' + d3.format(",.2f")(d.target.__data__.order_num)  + '</td>\
+            <td>' + d3.format(",.2f")(d.target.__data__.order_num) +' (About ' + d3.format(",.2s")(d.target.__data__.order_num) +')</td>\
         </tr>\
         <tr>\
             <th>Pay Value</th>\
-            <td>' + d3.format(",.2f")(d.target.__data__.pay_num)  + '</td>\
+            <td>' + d3.format(",.2f")(d.target.__data__.pay_num)  + ' (About ' + d3.format(",.2s")(d.target.__data__.pay_num) +')</td>\
         </tr>\
         <tr>\
             <th>Description</th>\
