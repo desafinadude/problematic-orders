@@ -221,6 +221,11 @@ let drawChart = (run) => {
 
                 showingArticles = true;
 
+                d3.selectAll("circle")
+                .transition().duration(100)
+                .attr('opacity',0.5)
+                .attr('r', settings.circle_radius[0])
+
                 d3.select(d.target)
                     .attr('cursor','pointer')
                     .transition().duration(100)
