@@ -385,7 +385,7 @@ let toggleLegend = () => {
 
     for (let index = 0; index < pallete.length; ++index) {
         chart_legend += '<tr>\
-            <th><div style="background: ' + pallete[index].color + '"></div></th>\
+            <th><div style="background: ' + pallete[index].color + ';opacity: 0.5; "></div></th>\
             <td class="legend_name">' + pallete[index].group + '</td>\
         </tr>';
     }
