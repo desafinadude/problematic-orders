@@ -41,10 +41,12 @@ d3.csv('orders.csv').then((incoming_orders) => {
         let groups = orders.map( d => d.group )
         groups = [...new Set(groups)]
 
+        let color_pallete=["#C05194","#835AF1", "#7C4BA5", "#3A0751", "#50A9FF", "#2E67AB", "#28BF64", "#017E72","#00AEAD", "#95B587", "#B2A55F", "#D19258", "#A16969", "#828282", "#EFB821",  "#FF7629", "#DA4343"]
         for (let index = 0; index < groups.length; index++) {
             pallete.push({
                 group: groups[index],
-                color: d3.interpolateRainbow(index * (1/groups.length))
+                // color: d3.interpolateRainbow(index * (1/groups.length))
+                color: color_pallete[index]
             })
         }
 
@@ -219,6 +221,11 @@ let drawChart = (run) => {
 
                 showingArticles = true;
 
+                d3.selectAll("circle")
+                .transition().duration(100)
+                .attr('opacity',0.5)
+                .attr('r', settings.circle_radius[0])
+
                 d3.select(d.target)
                     .attr('cursor','pointer')
                     .transition().duration(100)
@@ -309,16 +316,20 @@ let getTooltipContent = (d,type) => {
 
     tooltip_content += '<table>\
         <tr>\
+            <th>Problem </th>\
+            <td>' + d.target.__data__.group + '</td>\
+        </tr>\
+        <tr>\
             <th>Department</th>\
             <td>' + d.target.__data__.Institution_name + '</td>\
         </tr>\
         <tr>\
             <th>Order Value</th>\
-            <td>' + d3.format(",.2f")(d.target.__data__.order_num)  + '</td>\
+            <td>' + d3.format(",.2f")(d.target.__data__.order_num) +' (About ' + d3.format(",.2s")(d.target.__data__.order_num) +')</td>\
         </tr>\
         <tr>\
             <th>Pay Value</th>\
-            <td>' + d3.format(",.2f")(d.target.__data__.pay_num)  + '</td>\
+            <td>' + d3.format(",.2f")(d.target.__data__.pay_num)  + ' (About ' + d3.format(",.2s")(d.target.__data__.pay_num) +')</td>\
         </tr>\
         <tr>\
             <th>Description</th>\
@@ -339,7 +350,7 @@ let getTooltipContent = (d,type) => {
 
             tooltip_content += '<div class="slide" style="background-image: url(' + item_articles[index].image_url + ')">\
                 <div class="article_details">\
-                    <a href="' + item_articles[index].article_link + '">Title</a><br/>\
+                    <a href="' + item_articles[index].article_link + '">'+ item_articles[index].title+ '</a><br/>\
                     <span>' + item_articles[index].authors + '</span><br/>\
                     <span>' + item_articles[index].publish_date + '</span>\
                 </div>\
@@ -374,7 +385,7 @@ let toggleLegend = () => {
 
     for (let index = 0; index < pallete.length; ++index) {
         chart_legend += '<tr>\
-            <th><div style="background: ' + pallete[index].color + '"></div></th>\
+            <th><div style="background: ' + pallete[index].color + ';opacity: 0.5; "></div></th>\
             <td class="legend_name">' + pallete[index].group + '</td>\
         </tr>';
     }
