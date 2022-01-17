@@ -209,7 +209,9 @@ let drawChart = (run) => {
             if(showingArticles == false && showLegend == false) {
                 var coords = d3.pointer( d );
                 tooltip.style('top','unset').style('bottom','unset');
-                tooltip.style("top", (coords[1]-20)+"px").style("left",(coords[0]+10)+"px");
+                tooltip.style("top", (coords[1]-20)+"px");
+                tooltip.style("left", (coords[0]+10)+"px");
+                tooltip.style("transform", (coords[0] > settings.width/2) ? 'translateX(-110%)' : '');
                 tooltip.attr("pos", coords[1] > settings.height/1.5 ? 'bottom' : 'top');
             }
 
