@@ -17,7 +17,7 @@ let cats = [];
 let pallete = [];
 let svg;
 let xScale, xAxis, tooltip;
-let showArticles = false;
+let showArticles = true;
 let showValues = false;
 let showLegend = false;
 let ordersMinMax = [0,100];
@@ -127,9 +127,7 @@ d3.csv('orders.csv').then((incoming_orders) => {
 })
 
 let drawChart = (run) => {
-
     if (showArticles == true) {
-        console.log('here');
         d3.select('.chart_controls p')
             .html('Click on outlined circles to see articles written about this order');               
     } else {
@@ -173,6 +171,9 @@ let drawChart = (run) => {
             return settings.height - (Math.floor(findIndex(d)/settings.count) * 20); 
         })
         .merge(circles)
+        .attr('stroke', (d) => showArticles == true ? getArticle('stroke', d) : '' )
+        .attr('stroke-width', (d) => showArticles == true ? getArticle('stroke-width', d) : 0 )
+        .attr('class', (d) => showArticles == true ? getArticle('class', d) : '' )
         .attr('fill', (d) => {
             if(showValues == true) {
                 let num = parseInt(d.pay_num) > parseInt(d.order_num) ? parseInt(d.pay_num) : parseInt(d.order_num);
@@ -288,10 +289,7 @@ let drawChart = (run) => {
         .attr('opacity', 0.5);
         
         
-        circles.transition().duration(100)
-        .attr('stroke', (d) => showArticles == true ? getArticle('stroke', d) : '' )
-        .attr('stroke-width', (d) => showArticles == true ? getArticle('stroke-width', d) : 0 )
-        .attr('class', (d) => showArticles == true ? getArticle('class', d) : '' )
+        
         
 
     return svg.node();
