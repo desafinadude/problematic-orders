@@ -4,7 +4,7 @@ import './app.scss';
 
 const settings = {
     width: 720,
-    height: 600,
+    height: 500,
     padding: [10,10,40,10],
     count: 7,
     circle_radius: [8,10],
@@ -127,6 +127,17 @@ d3.csv('orders.csv').then((incoming_orders) => {
 })
 
 let drawChart = (run) => {
+
+    if (showArticles == true) {
+        console.log('here');
+        d3.select('.chart_controls p')
+            .html('Click on outlined circles to see articles written about this order');               
+    } else {
+        d3.select('.chart_controls p')
+            .html('&nbsp;'); 
+    }
+
+   
     
     // CATEGORIES    
 
@@ -274,13 +285,13 @@ let drawChart = (run) => {
 
         .transition().duration(100).delay((d,i)=>2*i)
         .attr('r', settings.circle_radius[0])
-        .attr('opacity', 0.5)
+        .attr('opacity', 0.5);
         
         
         circles.transition().duration(100)
-        .attr('stroke', (d) => showArticles === true ? getArticle('stroke', d) : '' )
-        .attr('stroke-width', (d) => showArticles === true ? getArticle('stroke-width', d) : 0 )
-        .attr('class', (d) => showArticles === true ? getArticle('class', d) : '' )
+        .attr('stroke', (d) => showArticles == true ? getArticle('stroke', d) : '' )
+        .attr('stroke-width', (d) => showArticles == true ? getArticle('stroke-width', d) : 0 )
+        .attr('class', (d) => showArticles == true ? getArticle('class', d) : '' )
         
 
     return svg.node();

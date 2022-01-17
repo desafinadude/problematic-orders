@@ -5,8 +5,18 @@ body {
     font-size: 12px;
 }
 
+h1 {
+    font-size: 1.6em;
+    color: #666;
+    text-align: center;
+    
+}
+
 #chart {
+    padding: 1em 0;
     position: relative;
+    background: #f9f9f9;
+    width: 720px;
 }
 
 .domain {
@@ -113,13 +123,14 @@ body {
     padding: 0.5em 0;
     line-height: 1.2em;
     background: rgba(0,0,0,0.5);
+    text-align: center;
 }
 
 .tooltip .item_articles .article_details a {
     color: #fff;
     font-weight: bold;
     text-decoration: none;
-    font-size: 1.4em;
+    font-size: 1em;
 }
 
 .tooltip .item_articles .article_details span {
@@ -155,6 +166,9 @@ body {
 
 .chart_controls {
     margin-top: 1em;
+    text-align: center;
+    font-size: 0.9em;
+    color: #999;
 }
 
 .chart_controls input {
