@@ -361,7 +361,7 @@ let getTooltipContent = (d,type) => {
 
             tooltip_content += '<div class="slide" style="background-image: url(' + item_articles[index].image_url + ')">\
                 <div class="article_details">\
-                    <a href="' + item_articles[index].article_link + '">'+ item_articles[index].title+ '</a><br/>\
+                    <a target="_blank" href="' + item_articles[index].article_link + '">'+ item_articles[index].title+ '</a><br/>\
                     <span>' + item_articles[index].authors + '</span><br/>\
                     <span>' + item_articles[index].publish_date + '</span>\
                 </div>\
